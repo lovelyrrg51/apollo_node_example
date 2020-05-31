@@ -32,6 +32,8 @@ const getMe = async req => {
 }
 
 const server = new ApolloServer({
+	introspection: true,
+	playground: true,
 	typeDefs: schema,
 	resolvers,
 	formatError: error => {
@@ -80,8 +82,8 @@ sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
 	  createUsersWithMessages(new Date())
 	}
 
-	httpServer.listen({ port: 3000 }, () => {
-		console.log('Apollo Server on http://localhost:3000/graphql')
+	httpServer.listen({ port: process.env.PORT }, () => {
+		console.log(`Apollo Server on http://${process.env.HOST}:${process.env.PORT}/graphql`)
 	})
 })
 
@@ -89,8 +91,8 @@ const createUsersWithMessages = async date => {
   await models.User.create(
     {
 			username: 'LionKing',
-			email: 'fengliu93sun@gmail.com',
-			password: 'LionKing123!@#',
+			email: 'AAAAA0619@gmail.com',
+			password: 'test123!@#',
 			role: 'ADMIN',
       messages: [
         {
@@ -107,8 +109,8 @@ const createUsersWithMessages = async date => {
   await models.User.create(
     {
 			username: 'DragonWarrior',
-			email: 'dragonwarrior920619@gmail.com',
-			password: 'DragonWarrior123!@#',
+			email: 'BBBBB1219@gmail.com',
+			password: 'test123!@#',
       messages: [
         {
 					text: 'Happy to release ...',
