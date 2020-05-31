@@ -79,7 +79,7 @@ server.installSubscriptionHandlers(httpServer)
 const port = process.env.PORT || 3000
 const isProduction = !!process.env.DATABASE_URL;
 
-sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
+sequelize.sync({ force: isProduction }).then(async () => {
 	if (isProduction) {
 	  createUsersWithMessages(new Date())
 	}
